@@ -10,6 +10,7 @@ class Boards extends React.Component {
         <BoardTile key={board.id} board={board}/>
       );
     });
+    boardComponents.push((<button className="btn btn-danger"><span className="glyphicon glyphicon-plus"></span></button>));
     return (
       <div className="Boards">
         <h1>Welcome to Ollert</h1>
