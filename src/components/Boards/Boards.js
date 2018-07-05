@@ -35,7 +35,7 @@ class Boards extends React.Component {
       boardComponents.push((<button onClick={this.addBoard} className="btn btn-danger"><span className="glyphicon glyphicon-plus"></span></button>));
     }
     return (
-      <div className="container-fluid">
+      <div className="row">
         <div className="Boards">
           <h1>Welcome to Ollert</h1>
           {user ? boardComponents : <h2>Log in to view your boards</h2>}

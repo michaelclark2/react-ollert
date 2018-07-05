@@ -54,7 +54,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.updateUser}/>
-        <div className="row">
+        <div className="container-fluid">
           <Boards user={this.state.user} boards={this.state.boards} postNewBoard={this.postNewBoard}/>
         </div>
       </div>
