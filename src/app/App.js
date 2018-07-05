@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import connection from '../firebase/connection';
 import Navbar from '../components/Navbar/Navbar';
 import Boards from '../components/Boards/Boards';
-import {getBoards} from '../firebase/boards';
+import {getBoards, postBoard} from '../firebase/boards';
 
 class App extends React.Component {
   state = {
@@ -32,6 +32,20 @@ class App extends React.Component {
       }
     });
   }
+  postNewBoard = (boardObj) => {
+    postBoard(boardObj).then(res => {
+      const {user} = this.state;
+      getBoards(user.uid).then(boards => {
+        this.setState({
+          user,
+          boards,
+          username: user.displayName,
+        });
+      }).catch(err => {
+        console.error('Error posting board', err);
+      });
+    });
+  }
   componentDidMount () {
     connection();
     this.checkLogin();
@@ -41,7 +55,7 @@ class App extends React.Component {
       <div className="App">
         <Navbar user={this.state.user} setUser={this.updateUser}/>
         <div className="row">
-          <Boards user={this.state.user} boards={this.state.boards}/>
+          <Boards user={this.state.user} boards={this.state.boards} postNewBoard={this.postNewBoard}/>
         </div>
       </div>
     );

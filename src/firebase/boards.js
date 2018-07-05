@@ -19,4 +19,16 @@ const getBoards = (uid) => {
       });
   });
 };
-export {getBoards};
+const postBoard = (boardObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${constants.firebaseConfig.databaseURL}/boards.json`, boardObj)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+export {getBoards, postBoard};
