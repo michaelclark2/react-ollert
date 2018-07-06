@@ -1,6 +1,8 @@
 import React from 'react';
 import './Boards.css';
 import BoardTile from '../BoardTile/BoardTile';
+import Columns from '../Columns/Columns';
+import {getColumns} from '../../firebase/columns';
 
 class Boards extends React.Component {
   state = {
@@ -27,7 +29,11 @@ class Boards extends React.Component {
     }
   }
   selectBoard = (boardId) => {
-    this.setState({selectedBoardId: boardId});
+    getColumns(boardId).then(columns => {
+      this.setState({columns});
+    }).catch(err => {
+      console.error('Error getting columns', err);
+    });
   }
   render () {
     const {user, boards} = this.props;
@@ -48,7 +54,7 @@ class Boards extends React.Component {
           {user ? boardComponents : <h2>Log in to view your boards</h2>}
         </div>
         <div className="row">
-          {this.state.selectedBoardId ? this.state.selectedBoardId : <p>no board selected</p>}
+          {this.state.columns ? <Columns columns={this.state.columns}/> : <p>Select or create a board to get started</p>}
         </div>
       </div>
     );
