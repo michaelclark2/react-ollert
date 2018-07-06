@@ -1,6 +1,15 @@
 .Columns {
-  height: 100%;
-  * {
+  flex: 1;
+  overflow-x: auto;
+  white-space: nowrap;
+  .col {
     height: 100%;
+    &.col-md-3 {
+      display: inline-block;
+      float: none;
+    }
+    .panel {
+      height: 90%;
+    }
   }
 }
