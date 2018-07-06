@@ -53,7 +53,7 @@ class Boards extends React.Component {
           <h1>Welcome to Ollert</h1>
           {user ? boardComponents : <h2>Log in to view your boards</h2>}
         </div>
-        <div className="row">
+        <div className="ColumnRow">
           {this.state.columns ? <Columns columns={this.state.columns}/> : <p>Select or create a board to get started</p>}
         </div>
       </div>

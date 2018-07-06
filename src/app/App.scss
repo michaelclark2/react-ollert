@@ -1,4 +1,12 @@
 .App {
   background-color: turquoise;
   height: 100%;
+  display:flex;
+  flex-flow: column;
+
+  .container-fluid {
+    flex: 1;
+    display: flex;
+    margin: 0;
+  }
 }
