@@ -2,13 +2,15 @@ import React from 'react';
 import './Boards.css';
 import BoardTile from '../BoardTile/BoardTile';
 import Columns from '../Columns/Columns';
-import {getColumns} from '../../firebase/columns';
+import {getBoards} from '../../firebase/boards';
+import auth from '../../firebase/auth';
 
 class Boards extends React.Component {
   state = {
     isAdding: false,
     boardName: '',
     selectedBoardId: '',
+    boards: [],
   }
   addBoard = (e) => {
     this.setState({isAdding: !this.state.isAdding});
@@ -28,15 +30,17 @@ class Boards extends React.Component {
       this.addBoard();
     }
   }
-  selectBoard = (boardId) => {
-    getColumns(boardId).then(columns => {
-      this.setState({columns});
-    }).catch(err => {
-      console.error('Error getting columns', err);
-    });
+  componentDidMount () {
+    getBoards(auth.getUid())
+      .then(boards => {
+        this.setState({boards});
+      })
+      .catch(err => {
+        console.error('Error getting boards', err);
+      });
   }
   render () {
-    const {user, boards} = this.props;
+    const {boards} = this.state;
     const boardComponents = boards.map(board => {
       return (
         <BoardTile key={board.id} board={board} selectBoard={this.selectBoard}/>
@@ -51,7 +55,7 @@ class Boards extends React.Component {
       <div className="Boards">
         <div className="row">
           <h1>Welcome to Ollert</h1>
-          {user ? boardComponents : <h2>Log in to view your boards</h2>}
+          {boardComponents}
         </div>
         <div className="ColumnRow">
           {this.state.columns ? <Columns columns={this.state.columns}/> : <p>Select or create a board to get started</p>}
