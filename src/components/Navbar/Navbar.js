@@ -1,16 +1,15 @@
 import React from 'react';
 import './Navbar.css';
-import firebase from 'firebase';
+import auth from '../../firebase/auth';
 
 class Navbar extends React.Component {
   login = (e) => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-      .then(res => {
-      });
+    auth.signInGoogle();
   }
   logout = (e) => {
-    firebase.auth().signOut();
+    auth.signOut().then(() => {
+      this.props.logOff();
+    });
   }
   render () {
     const {isAuthed} = this.props;

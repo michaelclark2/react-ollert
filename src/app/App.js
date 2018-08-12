@@ -51,6 +51,9 @@ class App extends React.Component {
   state = {
     isAuthed: false,
   }
+  logOff = () => {
+    this.setState({isAuthed: false});
+  }
   componentDidMount () {
     this.checkLogin = firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -61,7 +64,7 @@ class App extends React.Component {
       } else {
         // No user is signed in.
       }
-    });;
+    });
   }
   componentWillUnmount () {
     this.checkLogin();
@@ -69,7 +72,7 @@ class App extends React.Component {
   render () {
     return (
       <div className="App">
-        <Navbar isAuthed={this.state.isAuthed}/>
+        <Navbar isAuthed={this.state.isAuthed} logOff={this.logOff}/>
         <div className="container-fluid">
           <BrowserRouter>
             <Switch>

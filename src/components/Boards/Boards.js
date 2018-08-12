@@ -43,7 +43,7 @@ class Boards extends React.Component {
     const {boards} = this.state;
     const boardComponents = boards.map(board => {
       return (
-        <BoardTile key={board.id} board={board} selectBoard={this.selectBoard}/>
+        <BoardTile key={board.id} board={board}/>
       );
     });
     if (this.state.isAdding) {
