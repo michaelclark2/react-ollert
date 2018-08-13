@@ -10,6 +10,9 @@ class Column extends React.Component {
     cards: [],
   }
   componentDidMount () {
+    this.getCards();
+  }
+  getCards = () => {
     const {column} = this.props;
     cards.getCards(column.id)
       .then(cards => {
@@ -46,7 +49,7 @@ class Column extends React.Component {
             {
               this.state.cards.map(card => {
                 return (
-                  <Card key={card.id} card={card} />
+                  <Card key={card.id} card={card} getCards={this.getCards} />
                 );
               })
             }

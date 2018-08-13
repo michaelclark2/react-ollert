@@ -21,5 +21,17 @@ const getCards = (colId) => {
       });
   });
 };
+const deleteCard = (cardId) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/cards/${cardId}.json`)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
 
-export default {getCards};
+export default {getCards, deleteCard};
