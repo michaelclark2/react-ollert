@@ -3,10 +3,12 @@
   height: 100%;
   display:flex;
   flex-flow: column;
+  overflow: hidden;
 
   .container-fluid {
     flex: 1;
     display: flex;
     margin: 0;
+    overflow: hidden;
   }
 }

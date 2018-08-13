@@ -1,5 +1,6 @@
 import React from 'react';
 import './BoardForm.css';
+
 import { postBoard } from '../../firebase/boards';
 import auth from '../../firebase/auth';
 
