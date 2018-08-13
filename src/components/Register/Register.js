@@ -129,6 +129,13 @@ class Register extends React.Component {
                     </button>
                   </div>
                 </div>
+                <div className="form-group">
+                  <div className="col-sm-12">
+                    <Link to='/login'>
+                      Already have an account?
+                    </Link>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
