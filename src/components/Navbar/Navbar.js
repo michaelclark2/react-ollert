@@ -4,9 +4,6 @@ import './Navbar.css';
 import auth from '../../firebase/auth';
 
 class Navbar extends React.Component {
-  login = (e) => {
-    auth.signInGoogle();
-  }
   logout = (e) => {
     auth.signOut().then(() => {
       this.props.logOff();
@@ -31,7 +28,7 @@ class Navbar extends React.Component {
                 </li>
               </ul>
             ) : (
-              <button onClick={this.login} className='btn btn-default navbar-btn'>Log In</button>
+              <Link to="/login" className='btn btn-default navbar-btn'>Log In</Link>
             )
           }
         </div>
