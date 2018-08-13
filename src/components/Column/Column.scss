@@ -1,2 +1,8 @@
 .Column {
+  display: inline-block;
+  float: none;
+  height: 60vh;
+  .panel {
+    height: 100%;
+  }
 }
