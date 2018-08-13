@@ -18,6 +18,18 @@ const getColumns = (boardId) => {
       });
   });
 };
+const postColumn = (colObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${constants.firebaseConfig.databaseURL}/columns.json`, colObj)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
 const deleteColumn = (colId) => {
   return new Promise((resolve, reject) => {
     axios
@@ -30,4 +42,4 @@ const deleteColumn = (colId) => {
       });
   });
 };
-export {getColumns, deleteColumn};
+export {getColumns, postColumn, deleteColumn};
