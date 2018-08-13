@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink, Link} from 'react-router-dom';
 import './Navbar.css';
 import auth from '../../firebase/auth';
 
@@ -17,12 +18,22 @@ class Navbar extends React.Component {
       <nav className='navbar navbar-inverse navbar-static-top'>
         <div className='container-fluid'>
           <div className='navbar-header'>
-            <span className="navbar-brand">Ollert</span>
+            <Link to="/" className="navbar-brand">Ollert</Link>
           </div>
-          <ul className="nav navbar-nav">
-            <li>{isAuthed ? <button onClick={this.logout} className='btn btn-default navbar-btn'>Log Out</button> : <button onClick={this.login} className='btn btn-default navbar-btn'>Log In</button>}</li>
-          </ul>
-
+          {
+            isAuthed ? (
+              <ul className="nav navbar-nav">
+                <li>
+                  <NavLink to="/boards">My Boards</NavLink>
+                </li>
+                <li>
+                  <button onClick={this.logout} className='btn btn-default navbar-btn'>Log Out</button>
+                </li>
+              </ul>
+            ) : (
+              <button onClick={this.login} className='btn btn-default navbar-btn'>Log In</button>
+            )
+          }
         </div>
       </nav>
     );

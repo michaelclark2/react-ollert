@@ -71,10 +71,10 @@ class App extends React.Component {
   }
   render () {
     return (
-      <div className="App">
-        <Navbar isAuthed={this.state.isAuthed} logOff={this.logOff}/>
-        <div className="container-fluid">
-          <BrowserRouter>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar isAuthed={this.state.isAuthed} logOff={this.logOff}/>
+          <div className="container-fluid">
             <Switch>
               <Route path='/' exact component={Home} />
               <PublicRoute path='/login' component={Login} authed={this.state.isAuthed} />
@@ -82,9 +82,9 @@ class App extends React.Component {
               <PrivateRoute path='/boards' component={Boards} authed={this.state.isAuthed} />
               <PrivateRoute path='/board/:id' component={SingleBoard} authed={this.state.isAuthed} />
             </Switch>
-          </BrowserRouter>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
