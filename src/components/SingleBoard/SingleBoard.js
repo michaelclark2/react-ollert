@@ -7,7 +7,7 @@ class SingleBoard extends React.Component {
   state = {
     columns: [],
   }
-  componentDidMount () {
+  loadColumns = () => {
     getColumns(this.props.match.params.id)
       .then(columns => {
         this.setState({columns});
@@ -16,6 +16,9 @@ class SingleBoard extends React.Component {
         console.error('Error getting columns', err);
       });
   }
+  componentDidMount () {
+    this.loadColumns();
+  }
   render () {
     return (
       <div className="SingleBoard">
@@ -23,7 +26,7 @@ class SingleBoard extends React.Component {
         <div className="row">
           {
             this.state.columns.map(col => {
-              return <Column key={col.id} column={col} />;
+              return <Column key={col.id} column={col} loadColumns={this.loadColumns} />;
             })
           }
         </div>
