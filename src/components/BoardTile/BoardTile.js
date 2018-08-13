@@ -1,18 +1,15 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './BoardTile.css';
 
 class BoardTile extends React.Component {
-  clickBoard = (e) => {
-    const {selectBoard, board} = this.props;
-    selectBoard(board.id);
-  }
   render () {
     const {board} = this.props;
     return (
       <div className="col-md-2">
-        <div id={board.id} className="panel panel-primary" onClick={this.clickBoard}>
-          <div className="panel-body bg-primary">
-            <p className="text-center">{board.title}</p>
+        <div className="panel panel-primary">
+          <div className="panel-body text-center">
+            <Link to={'/board/' + board.id}>{board.title}</Link>
           </div>
         </div>
       </div>
