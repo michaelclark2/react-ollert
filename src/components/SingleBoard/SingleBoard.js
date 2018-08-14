@@ -32,13 +32,13 @@ class SingleBoard extends React.Component {
           </div>
           <ColumnForm loadColumns={this.loadColumns} boardId={this.props.match.params.id} />
         </div>
-          <HorizontalScroll reverseScroll className="row">
-            {
-              this.state.columns.map(col => {
-                return <Column key={col.id} column={col} loadColumns={this.loadColumns} />;
-              })
-            }
-          </HorizontalScroll>
+        <HorizontalScroll reverseScroll className="row">
+          {
+            this.state.columns.map(col => {
+              return <Column key={col.id} column={col} loadColumns={this.loadColumns} />;
+            })
+          }
+        </HorizontalScroll>
       </div>
     );
   }
