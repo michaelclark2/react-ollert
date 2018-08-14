@@ -4,13 +4,21 @@ import './Column.css';
 import {deleteColumn} from '../../firebase/columns';
 import cards from '../../firebase/cards';
 import Card from '../Card/Card';
+import CardForm from '../CardForm/CardForm';
 
 class Column extends React.Component {
   state = {
     cards: [],
+    isAdding: false,
   }
   componentDidMount () {
     this.getCards();
+  }
+  toggleAdding = () => {
+    this.setState({isAdding: true});
+  }
+  toggleAddingOff = () => {
+    this.setState({isAdding: false});
   }
   getCards = () => {
     const {column} = this.props;
@@ -41,11 +49,23 @@ class Column extends React.Component {
             <div className="pull-left">
               {column.title}
             </div>
-            <button onClick={this.removeColumn} type="button" className="close" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <div className="pull-right col-toolbar">
+              <a onClick={this.toggleAdding}>
+                +
+              </a>
+              <a onClick={this.removeColumn}>
+                &times;
+              </a>
+            </div>
           </div>
           <div className="panel-body">
+            {
+              this.state.isAdding || this.state.cards.length === 0 ? (
+                <CardForm toggleOff={this.toggleAddingOff} columnId={this.props.column.id} getCards={this.getCards} />
+              ) : (
+                null
+              )
+            }
             {
               this.state.cards.map(card => {
                 return (

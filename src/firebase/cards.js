@@ -21,6 +21,18 @@ const getCards = (colId) => {
       });
   });
 };
+const postCard = (cardObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${constants.firebaseConfig.databaseURL}/cards.json`, cardObj)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  });
+};
 const deleteCard = (cardId) => {
   return new Promise((resolve, reject) => {
     axios
@@ -34,4 +46,4 @@ const deleteCard = (cardId) => {
   });
 };
 
-export default {getCards, deleteCard};
+export default {getCards, postCard, deleteCard};
