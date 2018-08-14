@@ -5,4 +5,18 @@
   .panel {
     height: 100%;
   }
+  .col-toolbar {
+    a {
+      color: white;
+      font-size: 21px;
+      font-weight: 700;
+      &:not(:last-child) {
+      margin-right: 10px;
+      }
+      &:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
 }

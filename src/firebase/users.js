@@ -33,5 +33,18 @@ const postUser = (user) => {
       });
   });
 };
+const getUserName = (uid) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`)
+      .then(res => {
+        const data = res.data[Object.keys(res.data)[0]];
+        resolve(data.displayName);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
 
-export default {getUsers, postUser};
+export default {getUsers, postUser, getUserName};

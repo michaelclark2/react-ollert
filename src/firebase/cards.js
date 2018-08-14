@@ -21,5 +21,29 @@ const getCards = (colId) => {
       });
   });
 };
+const postCard = (cardObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${constants.firebaseConfig.databaseURL}/cards.json`, cardObj)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  });
+};
+const deleteCard = (cardId) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/cards/${cardId}.json`)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
 
-export default {getCards};
+export default {getCards, postCard, deleteCard};
