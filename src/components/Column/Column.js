@@ -3,8 +3,8 @@ import './Column.css';
 
 import {deleteColumn} from '../../firebase/columns';
 import cards from '../../firebase/cards';
-import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
+import Card from '../Card/Card';
 
 class Column extends React.Component {
   state = {
@@ -43,7 +43,7 @@ class Column extends React.Component {
   render () {
     const {column} = this.props;
     return (
-      <div className="Column col col-md-3">
+      <div className="Column col-md-3">
         <div className="panel panel-primary">
           <div className="panel-heading clearfix">
             <div className="pull-left">
@@ -58,7 +58,7 @@ class Column extends React.Component {
               </a>
             </div>
           </div>
-          <div className="panel-body">
+          <div className="panel-body clearfix ColumnCards">
             {
               this.state.isAdding || this.state.cards.length === 0 ? (
                 <CardForm toggleOff={this.toggleAddingOff} columnId={this.props.column.id} getCards={this.getCards} />
@@ -69,10 +69,11 @@ class Column extends React.Component {
             {
               this.state.cards.map(card => {
                 return (
-                  <Card key={card.id} card={card} getCards={this.getCards} />
+                  <Card key={card.id} card={card} getCards={this.props.getCards} />
                 );
               })
             }
+            {/* <ColumnCards cards={this.state.cards} getCards={this.getCards} /> */}
           </div>
         </div>
       </div>
