@@ -2,8 +2,16 @@ import React from 'react';
 import './Card.css';
 
 import cards from '../../firebase/cards';
+import users from '../../firebase/users';
 
 class Card extends React.Component {
+  state = {
+    userName: '',
+  }
+  componentDidMount () {
+    const {card} = this.props;
+    this.findUserName(card.userId);
+  }
   removeCard = (e) => {
     const {card, getCards} = this.props;
     cards
@@ -15,6 +23,11 @@ class Card extends React.Component {
         console.error('Error deleting card', err);
       });
   }
+  findUserName = (uid) => {
+    users.getUserName(uid).then(userName => {
+      this.setState({userName});
+    });
+  }
   render () {
     const {card} = this.props;
     return (
@@ -25,7 +38,7 @@ class Card extends React.Component {
               {card.content}
             </div>
             <div className="panel-footer clearfix">
-              <p className="pull-left">{card.userId}</p>
+              <span className="pull-left">{this.state.userName}</span>
               <button onClick={this.removeCard} type="button" className="close" aria-label="Close">
                 <span className="glyphicon glyphicon-trash"></span>
               </button>
