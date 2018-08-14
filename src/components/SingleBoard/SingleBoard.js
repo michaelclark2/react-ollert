@@ -1,6 +1,9 @@
 import React from 'react';
 import './SingleBoard.css';
+
 import { getColumns } from '../../firebase/columns';
+
+import HorizontalScroll from 'react-scroll-horizontal';
 import Column from '../Column/Column';
 import ColumnForm from '../ColumnForm/ColumnForm';
 
@@ -29,13 +32,13 @@ class SingleBoard extends React.Component {
           </div>
           <ColumnForm loadColumns={this.loadColumns} boardId={this.props.match.params.id} />
         </div>
-        <div className="row scroll-row">
+        <HorizontalScroll reverseScroll className="row">
           {
             this.state.columns.map(col => {
               return <Column key={col.id} column={col} loadColumns={this.loadColumns} />;
             })
           }
-        </div>
+        </HorizontalScroll>
       </div>
     );
   }
