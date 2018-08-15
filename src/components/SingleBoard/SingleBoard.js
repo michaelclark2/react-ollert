@@ -32,7 +32,7 @@ class SingleBoard extends React.Component {
         invalid: (el, handle) => {
           return el.classList.contains('CardForm');
         },
-      });
+      }).on('drop', (el, target, source, sibling) => console.log(el));
     }
   }
   render () {

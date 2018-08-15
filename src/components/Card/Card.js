@@ -54,19 +54,21 @@ class Card extends React.Component {
       );
     } else {
       return (
-        <div className="Card col-sm-12">
-          <div className="panel panel-primary">
-            <div className="panel-body">
-              {card.content}
-            </div>
-            <div className="panel-footer clearfix">
-              <span className="pull-left">{this.state.userName}</span>
-              <button onClick={this.toggleEditingOn} type="button" className="close" aria-label="Close">
-                <span className="glyphicon glyphicon-edit"></span>
-              </button>
-              <button onClick={this.removeCard} type="button" className="close" aria-label="Close">
-                <span className="glyphicon glyphicon-trash"></span>
-              </button>
+        <div>
+          <div className="Card col-sm-12">
+            <div className="panel panel-primary">
+              <div className="panel-body">
+                {card.content}
+              </div>
+              <div className="panel-footer clearfix">
+                <span className="pull-left">{this.state.userName}</span>
+                <button onClick={this.toggleEditingOn} type="button" className="close" aria-label="Close">
+                  <span className="glyphicon glyphicon-edit"></span>
+                </button>
+                <button onClick={this.removeCard} type="button" className="close" aria-label="Close">
+                  <span className="glyphicon glyphicon-trash"></span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

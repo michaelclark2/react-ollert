@@ -69,11 +69,10 @@ class Column extends React.Component {
             {
               this.state.cards.map(card => {
                 return (
-                  <Card key={card.id} card={card} getCards={this.props.getCards} />
+                  <Card key={card.id} card={card} getCards={this.getCards} />
                 );
               })
             }
-            {/* <ColumnCards cards={this.state.cards} getCards={this.getCards} /> */}
           </div>
         </div>
       </div>
