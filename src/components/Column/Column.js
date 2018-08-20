@@ -5,6 +5,7 @@ import {deleteColumn} from '../../firebase/columns';
 import cards from '../../firebase/cards';
 import CardForm from '../CardForm/CardForm';
 import Card from '../Card/Card';
+import ColumnCards from '../ColumnCards/ColumnCards';
 
 class Column extends React.Component {
   state = {
@@ -67,11 +68,7 @@ class Column extends React.Component {
               )
             }
             {
-              this.state.cards.map(card => {
-                return (
-                  <Card key={card.id} card={card} getCards={this.getCards} />
-                );
-              })
+              <ColumnCards cards={this.state.cards} />
             }
           </div>
         </div>

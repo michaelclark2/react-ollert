@@ -6,7 +6,7 @@ import Card from '../Card/Card';
 class ColumnCards extends React.Component {
   render () {
     return (
-      <div className=" col-sm-12 clearfix">
+      <div className="ColumnCards clearfix">
         {
           this.props.cards.map(card => {
             return (

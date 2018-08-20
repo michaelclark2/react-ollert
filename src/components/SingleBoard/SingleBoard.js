@@ -1,5 +1,4 @@
 import React from 'react';
-import dragula from 'dragula';
 import './SingleBoard.css';
 
 import { getColumns } from '../../firebase/columns';
@@ -23,17 +22,6 @@ class SingleBoard extends React.Component {
   }
   componentDidMount () {
     this.loadColumns();
-  }
-  componentDidUpdate (prevProps, prevState) {
-    if (prevState.columns !== this.state.columns) {
-      dragula({
-        containers: [...document.getElementsByClassName('ColumnCards')],
-        revertOnSpill: true,
-        invalid: (el, handle) => {
-          return el.classList.contains('CardForm');
-        },
-      }).on('drop', (el, target, source, sibling) => console.log(el));
-    }
   }
   render () {
     return (
