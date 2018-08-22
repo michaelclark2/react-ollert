@@ -1,10 +1,23 @@
 import React from 'react';
+import {DropTarget} from 'react-dnd';
 import './Column.css';
 
 import {deleteColumn} from '../../firebase/columns';
 import cards from '../../firebase/cards';
 import CardForm from '../CardForm/CardForm';
-import ColumnCards from '../ColumnCards/ColumnCards';
+import Card from '../Card/Card';
+
+const columnSource = {
+  drop: (props, monitor, component) => {
+    return {columnId: props.column.id, getCards: component.getCards};
+  },
+};
+
+function collect (connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+  };
+}
 
 class Column extends React.Component {
   state = {
@@ -41,8 +54,8 @@ class Column extends React.Component {
       });
   }
   render () {
-    const {column} = this.props;
-    return (
+    const {column, connectDropTarget} = this.props;
+    return connectDropTarget(
       <div className="Column col-md-3">
         <div className="panel panel-primary">
           <div className="panel-heading clearfix">
@@ -58,7 +71,7 @@ class Column extends React.Component {
               </a>
             </div>
           </div>
-          <div className="panel-body clearfix ColumnCards">
+          <div className="panel-body clearfix">
             {
               this.state.isAdding || this.state.cards.length === 0 ? (
                 <CardForm toggleOff={this.toggleAddingOff} columnId={this.props.column.id} getCards={this.getCards} />
@@ -67,7 +80,11 @@ class Column extends React.Component {
               )
             }
             {
-              <ColumnCards cards={this.state.cards} columnId={column.id} getCards={this.getCards} loadColumns={this.props.loadColumns} />
+              this.state.cards.map(card => {
+                return (
+                  <Card key={card.id} card={card} getCards={this.getCards} />
+                );
+              })
             }
           </div>
         </div>
@@ -75,4 +92,4 @@ class Column extends React.Component {
     );
   }
 };
-export default Column;
+export default DropTarget('card', columnSource, collect)(Column);
