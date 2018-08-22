@@ -1,9 +1,32 @@
 import React from 'react';
+import {DragSource} from 'react-dnd';
 import './Card.css';
 
 import cards from '../../firebase/cards';
 import users from '../../firebase/users';
 import CardForm from '../CardForm/CardForm';
+
+function collect (connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+  };
+};
+
+const cardSource = {
+  beginDrag: (props, monitor, component) => {
+    return {cardId: props.card.id, columnId: props.card.columnId};
+  },
+  endDrag: (props, monitor, component) => {
+    const dropColumn = monitor.getDropResult();
+    if (dropColumn !== null) {
+      cards.editCard(props.card, props.card.id, dropColumn.columnId)
+        .then(() => {
+          dropColumn.getCards();
+          props.getCards();
+        });
+    }
+  },
+};
 
 class Card extends React.Component {
   state = {
@@ -53,10 +76,11 @@ class Card extends React.Component {
         />
       );
     } else {
-      return (
-        <div className="Card">
-          <div className="col-sm-12">
-            <div className="panel panel-primary" draggable>
+      const {connectDragSource} = this.props;
+      return connectDragSource(
+        <div>
+          <div className="Card col-sm-12">
+            <div className="panel panel-primary">
               <div className="panel-body">
                 {card.content}
               </div>
@@ -77,4 +101,4 @@ class Card extends React.Component {
   }
 };
 
-export default Card;
+export default DragSource('card', cardSource, collect)(Card);

@@ -1,4 +1,6 @@
 import React from 'react';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import './SingleBoard.css';
 
 import { getColumns } from '../../firebase/columns';
@@ -44,4 +46,4 @@ class SingleBoard extends React.Component {
   }
 };
 
-export default SingleBoard;
+export default DragDropContext(HTML5Backend)(SingleBoard);

@@ -1,10 +1,23 @@
 import React from 'react';
+import {DropTarget} from 'react-dnd';
 import './Column.css';
 
 import {deleteColumn} from '../../firebase/columns';
 import cards from '../../firebase/cards';
-import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
+import Card from '../Card/Card';
+
+const columnSource = {
+  drop: (props, monitor, component) => {
+    return {columnId: props.column.id, getCards: component.getCards};
+  },
+};
+
+function collect (connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+  };
+}
 
 class Column extends React.Component {
   state = {
@@ -41,9 +54,9 @@ class Column extends React.Component {
       });
   }
   render () {
-    const {column} = this.props;
-    return (
-      <div className="Column col col-md-3">
+    const {column, connectDropTarget} = this.props;
+    return connectDropTarget(
+      <div className="Column col-md-3">
         <div className="panel panel-primary">
           <div className="panel-heading clearfix">
             <div className="pull-left">
@@ -58,7 +71,7 @@ class Column extends React.Component {
               </a>
             </div>
           </div>
-          <div className="panel-body">
+          <div className="panel-body clearfix">
             {
               this.state.isAdding || this.state.cards.length === 0 ? (
                 <CardForm toggleOff={this.toggleAddingOff} columnId={this.props.column.id} getCards={this.getCards} />
@@ -79,4 +92,4 @@ class Column extends React.Component {
     );
   }
 };
-export default Column;
+export default DropTarget('card', columnSource, collect)(Column);

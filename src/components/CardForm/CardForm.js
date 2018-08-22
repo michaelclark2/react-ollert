@@ -6,7 +6,7 @@ import auth from '../../firebase/auth';
 
 class CardForm extends React.Component {
   state = {
-    cardContent: '',
+    cardContent: this.props.isEditing ? this.props.card.content : '',
   }
   inputChange = (e) => {
     const cardContent = e.target.value;
@@ -53,7 +53,7 @@ class CardForm extends React.Component {
             <div className="panel-body text-center">
               <form>
                 <div className="form-group">
-                  <textarea onChange={this.inputChange} className="form-control" placeholder="Enter card content..." value={this.state.cardContent || card.content} ></textarea>
+                  <textarea onChange={this.inputChange} className="form-control" placeholder="Enter card content..." value={this.state.cardContent}></textarea>
                 </div>
                 <button onClick={this.postCard} type="submit" className="btn btn-default">
                   Edit Card
