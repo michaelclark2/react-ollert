@@ -33,7 +33,9 @@ const postCard = (cardObj) => {
       });
   });
 };
-const editCard = (cardObj, cardId) => {
+const editCard = (cardObj, cardId, newColumnId) => {
+  cardObj.columnId = newColumnId;
+  delete cardObj.id;
   return new Promise((resolve, reject) => {
     axios
       .put(`${constants.firebaseConfig.databaseURL}/cards/${cardId}.json`, cardObj)
