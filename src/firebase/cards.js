@@ -34,7 +34,9 @@ const postCard = (cardObj) => {
   });
 };
 const editCard = (cardObj, cardId, newColumnId) => {
-  cardObj.columnId = newColumnId;
+  if (newColumnId) {
+    cardObj.columnId = newColumnId;
+  }
   delete cardObj.id;
   return new Promise((resolve, reject) => {
     axios
