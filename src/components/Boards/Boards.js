@@ -27,7 +27,7 @@ class Boards extends React.Component {
     const {boards} = this.state;
     const boardComponents = boards.map(board => {
       return (
-        <BoardTile key={board.id} board={board}/>
+        <BoardTile key={board.id} board={board} getBoards={this.getUserBoards}/>
       );
     });
 
