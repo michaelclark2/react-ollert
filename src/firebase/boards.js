@@ -31,4 +31,16 @@ const postBoard = (boardObj) => {
       });
   });
 };
-export {getBoards, postBoard};
+const deleteBoard = (boardId) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/boards/${boardId}.json`)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+export {getBoards, postBoard, deleteBoard};
