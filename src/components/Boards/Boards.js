@@ -33,11 +33,16 @@ class Boards extends React.Component {
 
     return (
       <div className="Boards">
-        <div className="row">
-          <BoardForm getBoards={this.getUserBoards}/>
+        <div className="board-tiles">
+          <h1 className="page-header text-center">My Boards</h1>
+          <div className="board-container">
+            {boardComponents}
+          </div>
         </div>
-        <div className="row">
-          {boardComponents}
+        <div className="board-menu">
+          <p>In order to use Ollert, you need to create a board.</p>
+          <p>You can do so by clicking below.</p>
+          <BoardForm getBoards={this.getUserBoards}/>
         </div>
       </div>
     );

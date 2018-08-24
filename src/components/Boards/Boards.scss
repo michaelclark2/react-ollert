@@ -1,3 +1,22 @@
 .Boards {
   width: 100%;
+  display: flex;
+  .board-menu {
+    width: 75%;
+    p {
+      text-align: center;
+      font-size: 26px;
+      margin: 2em;
+    }
+  }
+  .board-tiles {
+    width: 25%;
+  }
+  .board-container {
+    width: 100%;
+    height: calc(100vh - 200px);
+    overflow: auto;
+    padding: 0 1em;
+    padding-right: 2em;
+  }
 }
