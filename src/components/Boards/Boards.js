@@ -30,19 +30,25 @@ class Boards extends React.Component {
         <BoardTile key={board.id} board={board} getBoards={this.getUserBoards}/>
       );
     });
-
     return (
       <div className="Boards">
-        <div className="board-tiles">
-          <h1 className="page-header text-center">My Boards</h1>
-          <div className="board-container">
-            {boardComponents}
-          </div>
-        </div>
-        <div className="board-menu">
+        {
+          boardComponents.length ? (
+            <div className="board-tiles">
+              <h1 className="page-header text-center">My Boards</h1>
+              <div className="board-container">
+                {boardComponents}
+              </div>
+            </div>
+          ) : (
+            null
+          )
+        }
+        <div className="board-menu" style={boardComponents.length ? {} : {width: '100%'}}>
           <p>In order to use Ollert, you need to create a board.</p>
           <p>You can do so by clicking below.</p>
           <BoardForm getBoards={this.getUserBoards}/>
+          <p>You can view your new board by clicking on its title.</p>
         </div>
       </div>
     );

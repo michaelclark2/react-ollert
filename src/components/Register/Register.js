@@ -48,7 +48,7 @@ class Register extends React.Component {
               users
                 .postUser(userObj)
                 .then(() => {
-                  this.props.history.push('/bills');
+                  this.props.history.push('/boards');
                 })
                 .catch(err => {
                   console.error('Error posting user data', err);
