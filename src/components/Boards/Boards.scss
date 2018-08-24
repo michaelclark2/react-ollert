@@ -1,13 +1,3 @@
 .Boards {
-  input {
-    width: 80%;
-    margin: 1em 0;
-  }
-  display: flex;
-  flex-flow: column;
   width: 100%;
-  .ColumnRow {
-    flex: 1;
-    display: flex;
-  }
 }

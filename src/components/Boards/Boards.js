@@ -33,7 +33,9 @@ class Boards extends React.Component {
 
     return (
       <div className="Boards">
-        <BoardForm getBoards={this.getUserBoards}/>
+        <div className="row">
+          <BoardForm getBoards={this.getUserBoards}/>
+        </div>
         <div className="row">
           {boardComponents}
         </div>
