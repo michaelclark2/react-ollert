@@ -13,13 +13,13 @@ class Navbar extends React.Component {
     const {isAuthed} = this.props;
     return (
       <nav className='navbar navbar-inverse navbar-static-top'>
-        <div className='container-fluid'>
+        <div className='container'>
           <div className='navbar-header'>
             <Link to="/" className="navbar-brand">Ollert</Link>
           </div>
           {
             isAuthed ? (
-              <ul className="nav navbar-nav">
+              <ul className="nav navbar-nav navbar-right">
                 <li>
                   <NavLink to="/boards">My Boards</NavLink>
                 </li>
@@ -28,7 +28,11 @@ class Navbar extends React.Component {
                 </li>
               </ul>
             ) : (
-              <Link to="/login" className='btn btn-default navbar-btn'>Log In</Link>
+              <ul className="nav navbar-nav navbar-right">
+                <li>
+                  <Link to="/login" className='btn btn-default navbar-btn'>Log In</Link>
+                </li>
+              </ul>
             )
           }
         </div>
