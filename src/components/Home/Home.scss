@@ -1,0 +1,47 @@
+.Home {
+  width: 100%;
+  .page-header {
+    font-size: 4em;
+  }
+  .home-container {
+    width: 100%;
+    display: flex;
+  }
+  figure {
+    width: 50%;
+    display: inline-flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    img {
+      max-width: 400px;
+    }
+    figcaption {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .features {
+    display: inline-flex;
+    flex-flow: column;
+    justify-content: space-between;
+    list-style: none;
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+    li {
+      font-size: 1.75em;
+      margin: 10px 0;
+    }
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0 -15px;
+    padding: 1em;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    background-color: darken(turquoise, 20%);
+  }
+}
