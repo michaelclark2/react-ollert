@@ -7,7 +7,8 @@ class ColumnForm extends React.Component {
     isActive: false,
     colName: '',
   }
-  toggleActive = () => {
+  toggleActive = (e) => {
+    e.preventDefault();
     this.setState({isActive: !this.state.isActive});
   }
   changeInput = (e) => {
@@ -17,6 +18,7 @@ class ColumnForm extends React.Component {
     }
   }
   addColumn = (e) => {
+    e.preventDefault();
     const {colName} = this.state;
     if (colName) {
       postColumn({title: colName, boardId: this.props.boardId})
@@ -25,38 +27,26 @@ class ColumnForm extends React.Component {
           this.props.loadColumns();
         });
     }
+    else if (colName === '') {
+      this.toggleActive(e);
+    }
   }
   render () {
     return (
-      <div className="ColumnForm">
-        {
-          this.state.isActive ? (
-
-            <div className="col-md-3">
-              <div className="panel panel-primary">
-                <div className="panel-body text-center">
-                  <button className='btn btn-sm btn-danger' onClick={this.addColumn}>
-                    <span className="glyphicon glyphicon-plus"></span>
-                  </button>
+      <form className="ColumnForm">
+          <div className="panel panel-primary">
+            <div className="panel-body text-center">
+              <button className='btn btn-sm btn-danger' onClick={this.state.isActive ? this.addColumn : this.toggleActive}>
+                <span className="glyphicon glyphicon-plus"></span>
+              </button>
+              {
+                this.state.isActive ? (
                   <input type="text" onChange={this.changeInput} value={this.state.colName} placeholder="Add new column..." />
-                </div>
-              </div>
+                ) : null
+              }
             </div>
-
-          ) : (
-
-            <div className="col-md-1">
-              <div className="panel panel-primary">
-                <div className="panel-body text-center">
-                  <button className='btn btn-sm btn-danger' onClick={this.toggleActive}>
-                    <span className="glyphicon glyphicon-plus"></span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          )
-        }
-      </div>
+          </div>
+      </form>
     );
   }
 };

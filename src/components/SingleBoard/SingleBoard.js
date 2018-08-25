@@ -26,21 +26,27 @@ class SingleBoard extends React.Component {
     this.loadColumns();
   }
   render () {
+    const columnComponents = this.state.columns.map(col => {
+      return <Column key={col.id} column={col} loadColumns={this.loadColumns} />;
+    });
+
     return (
       <div className="SingleBoard">
-        <div className="row">
-          <div className="col-md-8">
+        <div className="row title-bar">
+          <div className="col-md-6">
             <h1>{this.props.location.title}</h1>
           </div>
-          <ColumnForm loadColumns={this.loadColumns} boardId={this.props.match.params.id} />
+          <div className="col-md-6">
+            <ColumnForm loadColumns={this.loadColumns} boardId={this.props.match.params.id} />
+          </div>
         </div>
-        <HorizontalScroll reverseScroll className="row">
-          {
-            this.state.columns.map(col => {
-              return <Column key={col.id} column={col} loadColumns={this.loadColumns} />;
-            })
-          }
-        </HorizontalScroll>
+        {
+          columnComponents.length ? (
+            <HorizontalScroll reverseScroll className="row">
+              {columnComponents}
+            </HorizontalScroll>
+          ) : null
+        }
       </div>
     );
   }
