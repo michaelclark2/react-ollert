@@ -85,7 +85,7 @@ class Card extends React.Component {
                 {card.content}
               </div>
               <div className="panel-footer clearfix">
-                <span className="pull-left">{this.state.userName}</span>
+                <span className="pull-left username">{this.state.userName}</span>
                 <button onClick={this.toggleEditingOn} type="button" className="close" aria-label="Close">
                   <span className="glyphicon glyphicon-edit"></span>
                 </button>
