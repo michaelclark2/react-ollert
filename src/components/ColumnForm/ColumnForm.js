@@ -34,18 +34,18 @@ class ColumnForm extends React.Component {
   render () {
     return (
       <form className="ColumnForm">
-          <div className="panel panel-primary">
-            <div className="panel-body text-center">
-              <button className='btn btn-sm btn-danger' onClick={this.state.isActive ? this.addColumn : this.toggleActive}>
-                <span className="glyphicon glyphicon-plus"></span>
-              </button>
-              {
-                this.state.isActive ? (
-                  <input type="text" onChange={this.changeInput} value={this.state.colName} placeholder="Add new column..." />
-                ) : null
-              }
-            </div>
+        <div className="panel panel-primary">
+          <div className="panel-body text-center">
+            <button className='btn btn-sm btn-danger' onClick={this.state.isActive ? this.addColumn : this.toggleActive}>
+              <span className="glyphicon glyphicon-plus"></span>
+            </button>
+            {
+              this.state.isActive ? (
+                <input type="text" onChange={this.changeInput} value={this.state.colName} placeholder="Add new column..." />
+              ) : null
+            }
           </div>
+        </div>
       </form>
     );
   }

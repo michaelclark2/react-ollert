@@ -1,7 +1,22 @@
 .SingleBoard {
   width: 100%;
+  .col-title {
+    h2 {
+      font-size: 1.25em;
+      margin: 0;
+      line-height: 1.5em;
+    }
+  }
   .title-bar {
     border-bottom: 2px solid #eee;
     margin-bottom: 2em;
+    h1 {
+      margin: 0;
+      line-height: 1.5em;
+    }
+  }
+  .no-columns {
+    text-align: center;
+    font-size: 2em;
   }
 }

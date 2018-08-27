@@ -45,7 +45,11 @@ class SingleBoard extends React.Component {
             <HorizontalScroll reverseScroll className="row">
               {columnComponents}
             </HorizontalScroll>
-          ) : null
+          ) : (
+            <p className="no-columns">
+              Add columns to get started!
+            </p>
+          )
         }
       </div>
     );
