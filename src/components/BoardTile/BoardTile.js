@@ -18,14 +18,12 @@ class BoardTile extends React.Component {
     const {board} = this.props;
     const pathname = '/board/' + board.id;
     return (
-      <div className="col-md-2">
-        <div className="panel panel-primary">
-          <div className="panel-body text-center">
-            <Link to={{pathname, title: board.title}}>{board.title}</Link>
-            <button onClick={this.removeBoard} type="button" className="close" aria-label="Close">
-              &times;
-            </button>
-          </div>
+      <div className="panel panel-primary">
+        <div className="panel-body text-center">
+          <Link to={{pathname, title: board.title}}>{board.title}</Link>
+          <button onClick={this.removeBoard} type="button" className="close" aria-label="Close">
+            &times;
+          </button>
         </div>
       </div>
     );

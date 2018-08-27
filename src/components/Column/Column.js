@@ -59,8 +59,8 @@ class Column extends React.Component {
       <div className="Column col-md-3">
         <div className="panel panel-primary">
           <div className="panel-heading clearfix">
-            <div className="pull-left">
-              {column.title}
+            <div className="pull-left col-title">
+              <h2>{column.title}</h2>
             </div>
             <div className="pull-right col-toolbar">
               <a onClick={this.toggleAdding}>

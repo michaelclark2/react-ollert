@@ -1,5 +1,15 @@
 .Card {
+  .panel{
+    background-color: lighten(turquoise, 30%);
+  }
   .close {
     font-size: 1em;
+    &:not(:first-child){
+      margin: 0 .5em;
+    }
+  }
+  .username {
+    font-size: .75em;
+    font-style: italic;
   }
 }

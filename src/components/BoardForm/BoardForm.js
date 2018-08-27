@@ -9,16 +9,18 @@ class BoardForm extends React.Component {
     isActive: false,
     boardName: '',
   }
-  toggleActive = () => {
+  toggleActive = (e) => {
+    e.preventDefault();
     this.setState({isActive: !this.state.isActive});
   }
   changeInput = (e) => {
     const boardName = e.target.value;
-    if (boardName.length < 26) {
+    if (boardName.length <= 25) {
       this.setState({boardName});
     }
   }
   addBoard = (e) => {
+    e.preventDefault();
     const {boardName} = this.state;
     if (boardName) {
       postBoard({title: boardName, ownerId: auth.getUid()})
@@ -27,40 +29,28 @@ class BoardForm extends React.Component {
           this.props.getBoards();
         });
     }
+    else if (boardName === '') {
+      this.toggleActive(e);
+    }
   }
   render () {
     return (
-      <div className="BoardForm">
-        <div className="row">
-          {
-            this.state.isActive ? (
-
-              <div className="col-md-3">
-                <div className="panel panel-primary">
-                  <div className="panel-body text-center">
-                    <button className='btn btn-sm btn-danger' onClick={this.addBoard}>
-                      <span className="glyphicon glyphicon-plus"></span>
-                    </button>
-                    <input type="text" onChange={this.changeInput} value={this.state.boardName} placeholder="Add new board..." />
-                  </div>
-                </div>
-              </div>
-
-            ) : (
-
-              <div className="col-md-1">
-                <div className="panel panel-primary">
-                  <div className="panel-body text-center">
-                    <button className='btn btn-sm btn-danger' onClick={this.toggleActive}>
-                      <span className="glyphicon glyphicon-plus"></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )
-          }
+      <form className="BoardForm">
+        <div className="panel panel-primary">
+          <div className="panel-body text-center">
+            <button type="submit" className='btn btn-sm btn-danger' onClick={this.state.isActive ? this.addBoard : this.toggleActive}>
+              <span className="glyphicon glyphicon-plus"></span>
+            </button>
+            {
+              this.state.isActive ? (
+                <input type="text" onChange={this.changeInput} value={this.state.boardName} placeholder="Add new board..." />
+              ) : (
+                null
+              )
+            }
+          </div>
         </div>
-      </div>
+      </form>
     );
   }
 };

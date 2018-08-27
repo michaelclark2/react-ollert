@@ -1,13 +1,25 @@
 .Boards {
-  input {
-    width: 80%;
-    margin: 1em 0;
-  }
-  display: flex;
-  flex-flow: column;
   width: 100%;
-  .ColumnRow {
-    flex: 1;
-    display: flex;
+  display: flex;
+  .board-menu {
+    width: 75%;
+    p {
+      text-align: center;
+      font-size: 26px;
+      margin: 2em;
+    }
+  }
+  .board-tiles {
+    width: 25%;
+    border: 3px solid #24aac2;
+    border-radius: 8px;
+    margin-bottom: 1em;
+  }
+  .board-container {
+    width: 100%;
+    height: calc(100vh - 200px);
+    overflow: auto;
+    padding: 0 1em;
+    padding-right: 2em;
   }
 }
